@@ -23,6 +23,7 @@ function App() {
       const data = await response.json();
 
       if (!response.ok) {
+        setResult(data); // Set data even on error to show available_models
         throw new Error(data.error || 'Analysis failed');
       }
 
@@ -53,6 +54,12 @@ function App() {
         {error && (
           <div className="p-4 mb-4 text-sm text-neon-red border border-neon-red rounded bg-red-900/10" role="alert">
             <span className="font-bold">Error:</span> {error}
+            {result?.available_models && (
+              <div className="mt-2 text-xs text-gray-400">
+                <p className="font-bold text-white">Available Models (Try one of these):</p>
+                <div className="mt-1 break-all font-mono">{result.available_models}</div>
+              </div>
+            )}
           </div>
         )}
 
