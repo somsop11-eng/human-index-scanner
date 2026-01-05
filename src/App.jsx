@@ -47,14 +47,14 @@ function App() {
       subtitle: "Market Sentiment Scanner",
       scanning: "SCANNING MARKET DATA...",
       accessing: "Accessing Neural Networks",
-      footer: "© 2024 Human Index. Powered by Gemini AI."
+      footer: "© 2026 Human Index. Powered by Gemini AI."
     },
     ko: {
       title: "인간 지표 판독기",
       subtitle: "AI 기반 시장 심리 분석",
       scanning: "시장 데이터를 스캔 중입니다...",
       accessing: "신경망 데이터에 접근 중",
-      footer: "© 2024 휴먼 인덱스. Powered by Gemini AI."
+      footer: "© 2026 휴먼 인덱스. Powered by Gemini AI."
     }
   };
 
