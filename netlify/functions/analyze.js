@@ -80,9 +80,23 @@ Return ONLY a raw JSON object (no markdown formatting) with the following struct
 
         // Return generic error to client
         // Return actual error for debugging
+        let availableModels = "Could not fetch models";
+        try {
+            const listResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+            const listData = await listResponse.json();
+            if (listData.models) {
+                availableModels = listData.models.map(m => m.name).join(", ");
+            }
+        } catch (listError) {
+            console.error("Failed to list models:", listError);
+        }
+
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: `Debug Error: ${error.message || error.toString()}` }),
+            body: JSON.stringify({
+                error: `Debug Error: ${error.message || error.toString()}`,
+                available_models: availableModels
+            }),
         };
     }
 };
