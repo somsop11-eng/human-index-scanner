@@ -79,9 +79,10 @@ Return ONLY a raw JSON object (no markdown formatting) with the following struct
         console.error(`API Call Failed for keyword '${keyword}':`, error);
 
         // Return generic error to client
+        // Return actual error for debugging
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: "일시적인 오류입니다. 잠시 후 다시 시도해주세요." }),
+            body: JSON.stringify({ error: `Debug Error: ${error.message || error.toString()}` }),
         };
     }
 };
