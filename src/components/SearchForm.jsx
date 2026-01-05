@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 
-const SearchForm = ({ onSearch, isLoading }) => {
+const SearchForm = ({ onSearch, isLoading, lang }) => {
     const [input, setInput] = useState("");
+
+    const t = {
+        en: { placeholder: "Enter Asset (e.g. Bitcoin, Tesla)...", button: "SCAN" },
+        ko: { placeholder: "자산 입력 (예: 비트코인, 테슬라)...", button: "스캔" }
+    };
+    const text = t[lang] || t.en;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +24,7 @@ const SearchForm = ({ onSearch, isLoading }) => {
                     <input
                         type="text"
                         className="block w-full p-4 text-sm text-white bg-deep-black border border-terminal-gray rounded-l-lg focus:ring-neon-green focus:border-neon-green placeholder-gray-500 focus:outline-none"
-                        placeholder="Enter Asset (e.g. Bitcoin, Tesla)..."
+                        placeholder={text.placeholder}
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         disabled={isLoading}
@@ -27,7 +33,7 @@ const SearchForm = ({ onSearch, isLoading }) => {
                     <button
                         type="submit"
                         disabled={isLoading || !input.trim()}
-                        className="p-4 text-sm font-bold text-black bg-neon-green rounded-r-lg hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="p-4 text-sm font-bold text-black bg-neon-green rounded-r-lg hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
                     >
                         {isLoading ? (
                             <svg className="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

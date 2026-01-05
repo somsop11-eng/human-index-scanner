@@ -17,7 +17,7 @@ export const handler = async function (event, context) {
         return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
     }
 
-    const { keyword } = body;
+    const { keyword, lang } = body;
 
     if (!keyword || typeof keyword !== 'string' || keyword.trim() === "") {
         return {
@@ -48,11 +48,16 @@ export const handler = async function (event, context) {
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
 
+        const langInstruction = lang === 'ko'
+            ? "IMPORTANT: Provide the 'status', 'summary', and 'related_keywords' strictly in KOREAN language."
+            : "";
+
         const prompt = `Analyze the current market sentiment and public opinion for the keyword '${keyword}'. You act as a professional market analyst.
+${langInstruction}
 Return ONLY a raw JSON object (no markdown formatting) with the following structure:
 {
   "score": number (0 to 100, where 0 is Extreme Fear, 50 is Neutral, 100 is Extreme Greed),
-  "status": string (e.g., "Extreme Fear", "Caution", "Greed"),
+  "status": string (e.g., "Extreme Fear" / "극도의 공포", "Caution" / "주의", "Greed" / "탐욕"),
   "summary": string[] (Array of 3 short sentences explaining why you gave this score based on recent trends),
   "related_keywords": string[] (3-4 related trending tags)
 }`;
