@@ -65,9 +65,9 @@ function App() {
       {/* Language Toggle */}
       <button
         onClick={toggleLang}
-        className="absolute top-4 right-4 px-3 py-1 bg-terminal-gray border border-gray-700 rounded text-xs font-mono text-neon-green hover:bg-gray-800 transition-colors z-50"
+        className="absolute top-6 right-6 px-6 py-3 bg-deep-black border-2 border-neon-green rounded-lg text-lg font-bold font-mono text-neon-green hover:bg-neon-green hover:text-black transition-all shadow-[0_0_15px_rgba(57,255,20,0.3)] hover:shadow-[0_0_25px_rgba(57,255,20,0.6)] z-50"
       >
-        {lang === 'en' ? '🇰🇷 KR' : '🇺🇸 EN'}
+        {lang === 'en' ? '🇰🇷 KOREAN' : '🇺🇸 ENGLISH'}
       </button>
 
       {/* Header */}
