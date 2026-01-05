@@ -1,6 +1,6 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-exports.handler = async function (event, context) {
+export const handler = async function (event, context) {
     // 1. Method Validation
     if (event.httpMethod !== "POST") {
         return {
