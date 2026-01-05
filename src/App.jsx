@@ -5,6 +5,9 @@ import ResultCard from './components/ResultCard';
 
 function App() {
   const [lang, setLang] = useState('en'); // 'en' or 'ko'
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const toggleLang = () => {
     setLang(prev => prev === 'en' ? 'ko' : 'en');
