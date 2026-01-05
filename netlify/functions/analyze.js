@@ -46,7 +46,7 @@ export const handler = async function (event, context) {
     try {
         // 4. Gemini API Call
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+        const model = genAI.getGenerativeModel({ model: "gemini-3.0-flash" });
 
         const prompt = `Analyze the current market sentiment and public opinion for the keyword '${keyword}'. You act as a professional market analyst.
 Return ONLY a raw JSON object (no markdown formatting) with the following structure:
